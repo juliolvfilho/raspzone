@@ -1,0 +1,10 @@
+#!/bin/bash
+
+pkill python
+
+iptables -F INPUT
+
+iptables -F FORWARD
+
+ip6tables -F INPUT
+ip6tables -P INPUT ACCEPT

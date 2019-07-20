@@ -1,0 +1,44 @@
+#!/bin/bash
+
+iptables -F INPUT
+
+# Permitindo Android e PlayStore
+iptables -A INPUT -m dns --qname pool.ntp.org --rmatch -j ACCEPT
+iptables -A INPUT -m dns --qname google.com --rmatch -j ACCEPT
+iptables -A INPUT -m dns --qname googleapis.com --rmatch -j ACCEPT
+iptables -A INPUT -m dns --qname googleusercontent.com --rmatch -j ACCEPT
+iptables -A INPUT -m dns --qname googleadservices.com --rmatch -j ACCEPT
+iptables -A INPUT -m dns --qname connectivitycheck.gstatic.com -j ACCEPT
+iptables -A INPUT -m dns --qname doubleclick.net --rmatch -j ACCEPT
+iptables -A INPUT -m dns --qname gvt1.com --rmatch -j ACCEPT
+iptables -A INPUT -m dns --qname gvt2.com --rmatch -j ACCEPT
+iptables -A INPUT -m dns --qname gvt3.com --rmatch -j ACCEPT
+iptables -A INPUT -m dns --qname gvt4.com --rmatch -j ACCEPT
+iptables -A INPUT -m dns --qname gvt5.com --rmatch -j ACCEPT
+iptables -A INPUT -m dns --qname gvt6.com --rmatch -j ACCEPT
+iptables -A INPUT -m dns --qname gvt7.com --rmatch -j ACCEPT
+iptables -A INPUT -m dns --qname gvt8.com --rmatch -j ACCEPT
+iptables -A INPUT -m dns --qname gvt9.com --rmatch -j ACCEPT
+iptables -A INPUT -m dns --qname gghpt.com --rmatch -j ACCEPT
+
+# Permite iOS e Itunes
+iptables -A INPUT -m dns --qname apple.com --rmatch -j ACCEPT
+iptables -A INPUT -m dns --qname itunes.com --rmatch -j ACCEPT
+iptables -A INPUT -m dns --qname mzstatic.com --rmatch -j ACCEPT
+iptables -A INPUT -m dns --qname akamaiedge.com --rmatch -j ACCEPT
+
+# Permite o serviço do seu negócio
+iptables -A INPUT -m dns --qname seu.dominio.com -j ACCEPT
+
+# Impede uso de DNS externo
+iptables -A INPUT -m dns -j DROP
+iptables -F FORWARD
+iptables -A FORWARD -p udp -m udp --dport 53 -j DROP
+
+# Desabilita ipv6
+ip6tables -F INPUT
+ip6tables -A INPUT -i lo -j ACCEPT
+ip6tables -P INPUT DROP
+
+# Firewall especial Anti-whatsapp
+nohup python3 /root/firewall_whatsapp.py > /dev/null 2>&1 &
