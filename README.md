@@ -66,7 +66,7 @@ dtparam=spi=on
 ```
 
 
-### Splash image do boot ###
+#### Splash image do boot
 
 Troque a imagem contida em
 
@@ -78,7 +78,7 @@ para a imagem que desejar (a logomarca do seu negócio, por exemplo).
 O wallpaper pode ser trocado usando a interface gráfica de forma normal, após o sistema ter iniciado.
 
 
-### Hotspot Wi-Fi ###
+#### Hotspot Wi-Fi
 
 Instale [create_ap](https://github.com/oblique/create\_ap/blob/master/README.md)
 ```
@@ -103,7 +103,7 @@ systemctl daemon-reload
 ```
 
 
-### Firewall ###
+#### Firewall
 
 Instale [iptables-ext-dns](https://github.com/mimuret/iptables-ext-dns/blob/master/README.md)
 
@@ -163,7 +163,7 @@ pip3 install pyshark
 ```
 
 
-### Aplicação Web ###
+#### Aplicação Web
 
 Faremos o raspberry iniciar a aplicação web do painel digital assim que o sistema iniciar
 
